@@ -24,6 +24,15 @@ public class ControllerPhongBan {
     PhongBanService phongBanService;
     @Autowired
     RepositoryNhanVien repo;
+    @GetMapping()
+    public ResponseEntity<List<PhongBan>> list(){
+       List<PhongBan> phongBans = phongBanService.list();
+       if (phongBans.isEmpty()){
+           return  new ResponseEntity(new Messager("Chưa có Phòng Ban nào"),HttpStatus.NOT_FOUND);
+       }
+
+        return new  ResponseEntity( phongBans, HttpStatus.OK);
+    }
 
     @GetMapping("/list")
     public ResponseEntity<List<PhongBanDTO>> listResponseEntity(){

@@ -19,6 +19,7 @@ public class PhongbanIplm  implements PhongBanService {
         return repositoryPhongBan.findAll();
     }
 
+
     @Override
     public Optional<PhongBan> getOne(long id) {
         return repositoryPhongBan.findById(id);

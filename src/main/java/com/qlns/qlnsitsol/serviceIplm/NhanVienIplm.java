@@ -18,7 +18,6 @@ public class NhanVienIplm implements NhanVienService {
     public List<NhanVien> list() {
         return repositoryNhanVien.findAll();
     }
-
     @Override
     public Optional<NhanVien> getOne(long id) {
         return Optional.empty();

@@ -18,10 +18,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +26,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/nhanvien")
+@CrossOrigin(origins = "*")
 public class ControllerNhanVien {
     @Autowired
     NhanVienService nhanVienService;
@@ -40,18 +38,24 @@ public class ControllerNhanVien {
     RepositoryLuong repositoryLuong;
     @Autowired
     RepositoryKhenThuong repositoryKhenThuong;
-    @GetMapping()
+    @Autowired
+    RepositoryNhanVien repositoryNhanVien;
+    @GetMapping("/pages")
     public ResponseEntity<Page<NhanVien>> pageResponseEntity(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "name") String order,
-            @RequestParam(defaultValue = "true") boolean asc
+            @RequestParam(defaultValue = "tenNhanVien") String order,
+            @RequestParam(defaultValue = "true") boolean asc,
+            @RequestParam(defaultValue = "1")  long id
     ){
-        Page<NhanVien> pages = nhanVienService.page(
-                PageRequest.of(page, size, Sort.by(order)));
+        Page<NhanVien> pages = repositoryNhanVien.findAllByPhongBanId(id,PageRequest.of(page, size, Sort.by(order)));
         if(!asc)
-            pages = nhanVienService.page(
-                    PageRequest.of(page, size, Sort.by(order).descending()));
+            pages = repositoryNhanVien.findAllByPhongBanId(id,PageRequest.of(page, size, Sort.by(order).descending()));
+//        Page<NhanVien> pages = nhanVienService.page(
+//                PageRequest.of(page, size, Sort.by(order)));
+//        if(!asc)
+//            pages = nhanVienService.page(
+//                    PageRequest.of(page, size, Sort.by(order).descending()));
         
         return new ResponseEntity<Page<NhanVien>>(pages, HttpStatus.OK);
     }
