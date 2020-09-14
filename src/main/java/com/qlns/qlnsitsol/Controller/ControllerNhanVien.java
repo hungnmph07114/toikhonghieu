@@ -52,6 +52,7 @@ public class ControllerNhanVien {
         if(!asc)
             pages = nhanVienService.page(
                     PageRequest.of(page, size, Sort.by(order).descending()));
+        
         return new ResponseEntity<Page<NhanVien>>(pages, HttpStatus.OK);
     }
 

@@ -4,6 +4,7 @@ import com.qlns.qlnsitsol.entity.NhanVien;
 import com.qlns.qlnsitsol.entity.PhongBan;
 
 public class PhongBanDTO {
+    private  long id;
     private String TenNV;
     private String TenPB;
     private String chucVu;
@@ -13,7 +14,8 @@ public class PhongBanDTO {
 
     }
 
-    public PhongBanDTO(String tenNV, String tenPB, String ghiChu, String img) {
+    public PhongBanDTO(long id,String tenNV, String tenPB, String ghiChu, String img) {
+        this.id = id;
         TenNV = tenNV;
         TenPB = tenPB;
         this.ghiChu = ghiChu;
@@ -21,6 +23,7 @@ public class PhongBanDTO {
     }
     public PhongBanDTO toDTO(NhanVien nv) {
         PhongBanDTO dto = new PhongBanDTO();
+        dto.setId(nv.getPhongBan().getId());
         dto.setTenNV(nv.getTenNhanVien());
         dto.setChucVu(nv.getChuVu());
         dto.setGhiChu(nv.getPhongBan().getGhiChu());
@@ -28,6 +31,14 @@ public class PhongBanDTO {
         dto.setTenPB(nv.getPhongBan().getTenPhongBan());
         return dto;
 
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getChucVu() {

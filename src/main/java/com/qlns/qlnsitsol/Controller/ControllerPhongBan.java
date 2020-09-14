@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/phongban")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ControllerPhongBan {
     @Autowired
     PhongBanService phongBanService;
@@ -35,14 +36,15 @@ public class ControllerPhongBan {
         return new  ResponseEntity(phongBans.stream().map(dto::toDTO).collect(Collectors.toList()), HttpStatus.OK);
     }
     @PostMapping("/add")
-    public ResponseEntity<PhongBan>add(@RequestBody PhongBan phongBan ,BindingResult bindingResult){
+    public ResponseEntity<?>add(@RequestBody PhongBan phongBan ,BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return  new ResponseEntity( new Messager("không được để trống") ,  HttpStatus.BAD_REQUEST);
         }else if(phongBanService.existsByName(phongBan.getTenPhongBan())){
             return  new ResponseEntity(new Messager("Tên phòng ban đã tồn tại"),HttpStatus.BAD_REQUEST);
         }else
+            phongBan.setAction(true);
             phongBanService.save(phongBan);
-        return new ResponseEntity<>(phongBan,HttpStatus.CREATED);
+        return new ResponseEntity<>(new Messager("Thêm phòng ban"), HttpStatus.OK);
 
     }
     @PutMapping("/update/{id}")
