@@ -10,6 +10,7 @@ import java.util.Optional;
 
 public interface NhanVienService {
     List<NhanVien> list();
+    List<NhanVien> timkiem(String name);
     Optional<NhanVien> getOne(long id);
     Optional<NhanVien> getByName(String s);
     void  save(NhanVien phongBan);

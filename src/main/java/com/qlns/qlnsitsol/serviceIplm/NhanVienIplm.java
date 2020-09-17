@@ -18,9 +18,15 @@ public class NhanVienIplm implements NhanVienService {
     public List<NhanVien> list() {
         return repositoryNhanVien.findAll();
     }
+
+    @Override
+    public List<NhanVien> timkiem(String name) {
+        return repositoryNhanVien.getAllByActionAndTenNhanVienLike(true ,"%"+name+"%");
+    }
+
     @Override
     public Optional<NhanVien> getOne(long id) {
-        return Optional.empty();
+        return repositoryNhanVien.findById(id);
     }
 
     @Override
@@ -29,8 +35,8 @@ public class NhanVienIplm implements NhanVienService {
     }
 
     @Override
-    public void save(NhanVien phongBan) {
-
+    public void save(NhanVien nhanvien) {
+    repositoryNhanVien.save(nhanvien);
     }
 
     @Override
@@ -40,7 +46,7 @@ public class NhanVienIplm implements NhanVienService {
 
     @Override
     public boolean existsById(long id) {
-        return false;
+        return repositoryNhanVien.existsById(id);
     }
 
     @Override

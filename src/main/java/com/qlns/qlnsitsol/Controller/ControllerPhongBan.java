@@ -33,6 +33,15 @@ public class ControllerPhongBan {
 
         return new  ResponseEntity( phongBans, HttpStatus.OK);
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<PhongBan> getone(@PathVariable("id") long id){
+        Optional<PhongBan> phongBan = phongBanService.getOne(id);
+        if (phongBan.isEmpty()){
+            return new ResponseEntity(new Messager("Không tồn tại"),HttpStatus.NOT_FOUND);
+        }
+        System.out.println(  phongBan.get().getTenPhongBan());
+      return  new   ResponseEntity<PhongBan>(phongBan.get(),HttpStatus.OK);
+    }
 
     @GetMapping("/list")
     public ResponseEntity<List<PhongBanDTO>> listResponseEntity(){
@@ -51,6 +60,9 @@ public class ControllerPhongBan {
         }else if(phongBanService.existsByName(phongBan.getTenPhongBan())){
             return  new ResponseEntity(new Messager("Tên phòng ban đã tồn tại"),HttpStatus.BAD_REQUEST);
         }else
+            if (phongBan.getImg() == null){
+                phongBan.setImg("https://i.imgur.com/JrygMEz.jpg");
+            }
             phongBan.setAction(true);
             phongBanService.save(phongBan);
         return new ResponseEntity<>(new Messager("Thêm phòng ban"), HttpStatus.OK);

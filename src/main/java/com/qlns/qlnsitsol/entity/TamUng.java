@@ -13,7 +13,7 @@ public class TamUng {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @Column(name = "tentamung")
-    private String tenTamung;
+    private String tienTamung;
     @Column(name = "lydo")
     private String lyDo;
     @Column(name = "ngaytamung")
@@ -25,9 +25,9 @@ public class TamUng {
 
     public TamUng() {
     }
-    public TamUng(long id, String tenTamung, String lyDo, String ngayTamUng) {
+    public TamUng(long id, String tienTamung, String lyDo, String ngayTamUng) {
         this.id = id;
-        this.tenTamung = tenTamung;
+        this.tienTamung = tienTamung;
         this.lyDo = lyDo;
         this.ngayTamUng = ngayTamUng;
     }
@@ -40,12 +40,12 @@ public class TamUng {
         this.id = id;
     }
 
-    public String getTenTamung() {
-        return tenTamung;
+    public String getTienTamung() {
+        return tienTamung;
     }
 
-    public void setTenTamung(String tenTamung) {
-        this.tenTamung = tenTamung;
+    public void setTienTamung(String tenTamung) {
+        this.tienTamung = tenTamung;
     }
     public String getLyDo() {
         return lyDo;

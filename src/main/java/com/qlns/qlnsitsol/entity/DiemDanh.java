@@ -10,30 +10,24 @@ import javax.persistence.*;
 
 @Table(name = "diemdanh")
 public class DiemDanh {
-    @Id
-    @Column(name = "date_id")
-    private String date;
+
+    @EmbeddedId DiemDanhId id;
     private boolean dilam;
-    @ManyToOne
-    @PrimaryKeyJoinColumn
-    @JoinColumn(name ="nhavienid",referencedColumnName = "id")
-    @NotFound(action = NotFoundAction.IGNORE)
-    private NhanVien nhanVien;
 
-    public DiemDanh( String date, boolean dilam, NhanVien nhanVien) {
-        this.date = date;
+    public DiemDanh(DiemDanhId id, boolean dilam) {
+        this.id = id;
         this.dilam = dilam;
-        this.nhanVien = nhanVien;
     }
+
     public DiemDanh() {
-
-    }
-    public String getDate() {
-        return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public DiemDanhId getId() {
+        return id;
+    }
+
+    public void setId(DiemDanhId id) {
+        this.id = id;
     }
 
     public boolean isDilam() {
@@ -44,11 +38,45 @@ public class DiemDanh {
         this.dilam = dilam;
     }
 
-    public NhanVien getNhanVien() {
-        return nhanVien;
-    }
-
-    public void setNhanVien(NhanVien nhanVien) {
-        this.nhanVien = nhanVien;
-    }
+//    @Id
+//    @Column(name = "date_id")
+//    private String date;
+//    private boolean dilam;
+//    @ManyToOne
+//    @PrimaryKeyJoinColumn
+//    @JoinColumn(name ="nhavienid",referencedColumnName = "id")
+//    @NotFound(action = NotFoundAction.IGNORE)
+//    private NhanVien nhanVien;
+//
+//    public DiemDanh( String date, boolean dilam, NhanVien nhanVien) {
+//        this.date = date;
+//        this.dilam = dilam;
+//        this.nhanVien = nhanVien;
+//    }
+//    public DiemDanh() {
+//
+//    }
+//    public String getDate() {
+//        return date;
+//    }
+//
+//    public void setDate(String date) {
+//        this.date = date;
+//    }
+//
+//    public boolean isDilam() {
+//        return dilam;
+//    }
+//
+//    public void setDilam(boolean dilam) {
+//        this.dilam = dilam;
+//    }
+//
+//    public NhanVien getNhanVien() {
+//        return nhanVien;
+//    }
+//
+//    public void setNhanVien(NhanVien nhanVien) {
+//        this.nhanVien = nhanVien;
+//    }
 }

@@ -34,17 +34,17 @@ public class NhanVien {
 //    @NotFound(action = NotFoundAction.IGNORE)
 //    private ChucVu chucVu;
 
-    @OneToMany(mappedBy = "nhanVien", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @NotFound(action = NotFoundAction.IGNORE)
-    private List<Luong> luongs;
+//    @OneToMany(mappedBy = "nhanVien", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+//    @NotFound(action = NotFoundAction.IGNORE)
+//    private List<Luong> luongs;
     @ManyToOne
     @JoinColumn(name="phongbanid")
     @NotFound(action = NotFoundAction.IGNORE)
     private PhongBan phongBan;
 
-    @OneToMany(mappedBy = "nhanVien", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @NotFound(action = NotFoundAction.IGNORE)
-    private List<DiemDanh> diemDanh;
+//    @OneToMany(mappedBy = "nhanVien", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+//    @NotFound(action = NotFoundAction.IGNORE)
+//    private List<DiemDanh> diemDanh;
 
     public NhanVien() {
     }
@@ -82,9 +82,6 @@ public class NhanVien {
 //        return luongs;
 //    }
 
-    public void setLuongs(List<Luong> luongs) {
-        this.luongs = luongs;
-    }
 
     public String getImg() {
         return img;

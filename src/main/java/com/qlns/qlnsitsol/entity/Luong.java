@@ -8,10 +8,8 @@ import java.util.List;
 
 @Entity
 public class Luong {
-    @Id
-    private  String date;
-    @Column(name = "luongcoban")
-    private String LuongCoBan;
+    @EmbeddedId
+    private  LuongId id;
     @Column(name = "ngaycong")
     private String NgayCong;
     @Column(name = "ghitru")
@@ -21,10 +19,7 @@ public class Luong {
     @JoinColumn(name="kyluatid")
     @NotFound(action = NotFoundAction.IGNORE)
     private KyLuat kyLuat;
-    @ManyToOne
-    @JoinColumn(name="nhanvienid")
-    @NotFound(action = NotFoundAction.IGNORE)
-    private NhanVien nhanVien;
+
     @ManyToOne
     @JoinColumn(name="hesoluongid")
     @NotFound(action = NotFoundAction.IGNORE)
@@ -46,25 +41,39 @@ public class Luong {
 
     }
 
-    public Luong(String date, String luongCoBan, String ngayCong, String ghiTru, KyLuat kyLuat, NhanVien nhanVien, HeSoLuong heSoLuong, KhenThuongKl khenThuongKl, TamUng tamUng, PhuCap phuCap) {
-        this.date = date;
-        LuongCoBan = luongCoBan;
+    public Luong(LuongId id, String ngayCong, String ghiTru, KyLuat kyLuat, HeSoLuong heSoLuong, KhenThuongKl khenThuongKl, TamUng tamUng, PhuCap phuCap) {
+        this.id = id;
         NgayCong = ngayCong;
         GhiTru = ghiTru;
         this.kyLuat = kyLuat;
-        this.nhanVien = nhanVien;
         this.heSoLuong = heSoLuong;
         this.khenThuongKl = khenThuongKl;
         this.tamUng = tamUng;
         this.phuCap = phuCap;
     }
 
-    public String getDate() {
-        return date;
+    public LuongId getId() {
+        return id;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setId(LuongId id) {
+        this.id = id;
+    }
+
+    public String getNgayCong() {
+        return NgayCong;
+    }
+
+    public void setNgayCong(String ngayCong) {
+        NgayCong = ngayCong;
+    }
+
+    public String getGhiTru() {
+        return GhiTru;
+    }
+
+    public void setGhiTru(String ghiTru) {
+        GhiTru = ghiTru;
     }
 
     public KyLuat getKyLuat() {
@@ -73,10 +82,6 @@ public class Luong {
 
     public void setKyLuat(KyLuat kyLuat) {
         this.kyLuat = kyLuat;
-    }
-
-    public NhanVien getNhanVien() {
-        return nhanVien;
     }
 
     public HeSoLuong getHeSoLuong() {
@@ -109,38 +114,5 @@ public class Luong {
 
     public void setPhuCap(PhuCap phuCap) {
         this.phuCap = phuCap;
-    }
-
-    public String getLuongCoBan() {
-        return LuongCoBan;
-    }
-
-    public void setLuongCoBan(String luongCoBan) {
-        LuongCoBan = luongCoBan;
-    }
-
-
-    public String getNgayCong() {
-        return NgayCong;
-    }
-
-    public void setNgayCong(String ngayCong) {
-        NgayCong = ngayCong;
-    }
-
-    public String getGhiTru() {
-        return GhiTru;
-    }
-
-    public void setGhiTru(String ghiTru) {
-        GhiTru = ghiTru;
-    }
-
-//    public NhanVien getNhanVien() {
-//        return nhanVien;
-//    }
-
-    public void setNhanVien(NhanVien nhanVien) {
-        this.nhanVien = nhanVien;
     }
 }

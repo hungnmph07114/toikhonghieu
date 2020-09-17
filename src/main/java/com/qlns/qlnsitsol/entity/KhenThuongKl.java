@@ -27,12 +27,24 @@ public class KhenThuongKl {
 
     }
 
-    public KhenThuongKl(long id, String hinhThuc, String soTien, String noiDung) {
+
+    public KhenThuongKl(long id, String hinhThuc, String soTien, String noiDung,List<Luong> luongs)  {
         Id = id;
         HinhThuc = hinhThuc;
         SoTien = soTien;
         NoiDung = noiDung;
+        this.luongs = luongs;
     }
+
+
+//    public List<Luong> getLuongs() {
+//        return luongs;
+//    }
+
+    public void setLuongs(List<Luong> luongs) {
+        this.luongs = luongs;
+    }
+
     public long getId() {
         return Id;
     }

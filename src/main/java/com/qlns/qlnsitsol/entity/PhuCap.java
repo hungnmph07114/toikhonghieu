@@ -12,8 +12,9 @@ public class PhuCap {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  long id;
-    private String tenPhuCap;
+    private String tienPhuCap;
     private String ngayPhuCap;
+
     @OneToMany(mappedBy = "phuCap", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @NotFound(action = NotFoundAction.IGNORE)
     List<Luong> luongs;
@@ -23,9 +24,9 @@ public class PhuCap {
 
     }
 
-    public PhuCap(long id, String tenPhuCap, String ngayPhuCap) {
+    public PhuCap(long id, String tienPhuCap, String ngayPhuCap) {
         this.id = id;
-        this.tenPhuCap = tenPhuCap;
+        this.tienPhuCap = tienPhuCap;
         this.ngayPhuCap = ngayPhuCap;
     }
 
@@ -37,12 +38,12 @@ public class PhuCap {
         this.id = id;
     }
 
-    public String getTenPhuCap() {
-        return tenPhuCap;
+    public String getTienPhuCap() {
+        return tienPhuCap;
     }
 
-    public void setTenPhuCap(String tenPhuCap) {
-        this.tenPhuCap = tenPhuCap;
+    public void setTienPhuCap(String tienPhuCap) {
+        this.tienPhuCap = tienPhuCap;
     }
 
     public String getNgayPhuCap() {
@@ -51,5 +52,13 @@ public class PhuCap {
 
     public void setNgayPhuCap(String ngayPhuCap) {
         this.ngayPhuCap = ngayPhuCap;
+    }
+
+    public List<Luong> getLuongs() {
+        return luongs;
+    }
+
+    public void setLuongs(List<Luong> luongs) {
+        this.luongs = luongs;
     }
 }

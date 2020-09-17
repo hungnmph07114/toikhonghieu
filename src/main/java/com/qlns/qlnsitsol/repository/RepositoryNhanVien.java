@@ -11,7 +11,10 @@ import java.util.Optional;
 
 public interface RepositoryNhanVien extends JpaRepository<NhanVien,Long> {
    Optional<NhanVien> findByTenNhanVien (String s);
-    List<NhanVien> getAllByChuVuLikeAndActionAndPhongBan_Action (String s, boolean bl, boolean ba);
+    List<NhanVien> getAllByChuVuLikeAndActionAndPhongBan_Action(String s,boolean bl,boolean ba);
+    List<NhanVien> getAllByAction(boolean bl);
+    List<NhanVien>getAllByActionAndTenNhanVienLike(Boolean action, String sadsa);
     Page<NhanVien> findAllByPhongBanId(long id,Pageable pageable);
+
    Boolean existsByTenNhanVien(String s);
 }
