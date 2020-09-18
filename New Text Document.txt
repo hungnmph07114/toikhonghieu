@@ -1,5 +1,0 @@
-https://cdnjs.com/libraries/font-awesome
-https://www.npmjs.com/package/ngx-toastr
- canActivate:[ProdcutGuard] 
-https://sites.google.com/view/tailieucntt2020/free?authuser=0
-https://www.npmjs.com/package/angularx-social-login
